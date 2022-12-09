@@ -9,6 +9,8 @@ import {
 import { ReactComponent as Svg } from "./ssvg.svg";
 
 export default function Calculator() {
+
+  console.log(eval('10%+10'));
   const dispatch = useDispatch();
   const data = useSelector((state) => state.data.data);
   const ref = useRef();
@@ -91,7 +93,7 @@ dark:bg-teal-400 dark:text-purple-800 hover:underline px-3 py-1 xl:py-0"
                   dark:text-purple-800 flex justify-center items-center px-3 lg:px-10 lg:py-6 xl:px-16"
             onClick={() => dispatch(backDataAction())}
           >
-            <Svg className="w-10 h-10" />
+            <Svg className="w-10 h-10 xl:w-16 xl:h-16" />
           </button>
         </div>
         <div className="flex justify-between">
@@ -101,11 +103,11 @@ dark:bg-teal-400 dark:text-purple-800 hover:underline px-3 py-1 xl:py-0"
             <button
               className="bg-purple-800 text-teal-400 rounded-full lg:px-10 lg:py-8
              dark:bg-teal-400 dark:text-purple-800 hover:underline"
-              onClick={(e) => {
+              onClick={() => {
                 try {
                   String(eval(data)).length > 3 &&
                   String(eval(data)).includes(".")
-                    ? dispatch(setInputAction(String(eval(data).toFixed(6))))
+                    ? dispatch(setInputAction(String(eval(data))))
                     : dispatch(setInputAction(String(eval(data))));
                 } catch (e) {
                   console.error(e);
